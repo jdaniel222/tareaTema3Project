@@ -18,14 +18,12 @@
           <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ url_for('private.createcliente') }}">Alta Clientes</a>
         </li>
-          <div class="right">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Iniciar sesión</a>
+              <a class="nav-link active" aria-current="page" href="{{ url_for('login.loginuser') }}">Iniciar sesión</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Registrarse</a>
+              <a class="nav-link active" aria-current="page" href="{{ url_for('login.registrarse') }}">Registrarse</a>
             </li>
-          </div>
       </ul>
     </div>
   </div>
