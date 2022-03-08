@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -18,14 +18,14 @@ db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 #Importamos modelo
 from .private.models import Cliente
-
+from .login.models import Usuario
 
 from .public import public
 from .private import private
-
-
+from .login import login
 
 def create_app():
     app.register_blueprint(public)
     app.register_blueprint(private)
+    app.register_blueprint(login)
     return  app
