@@ -3,12 +3,15 @@
 {% block titulo %}Login usuario{% endblock %}
 {% block contenido %}
 
-<h1>Login usuario</h1>
-<div class="row">
-    <form action="" method ="post">
+    <h1>Login usuario</h1>
+    <div class="row">
+        <form action="{{ url_for('login.loginusuario') }}" method="post">
+            {{ generarForm(form) }}
 
-        <input type="submit" class="btn btn-primary "value="Buscar">
-    </form>
+            <input type="submit" class="btn btn-primary " value="Buscar">
 
-</div>
+        </form>
+        {{ error }}
+
+    </div>
 {% endblock %}

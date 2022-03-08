@@ -3,11 +3,11 @@
 {% block titulo %}Clientes{% endblock %}
 {% block contenido %}
 
-<h1>Clientes</h1>
-<div class="row">
+    <h1>Clientes</h1>
+    <div class="row">
         <form action="{{ url_for('private.createcliente') }}" method="post" enctype="multipart/form-data">
             {{ generarForm(form) }}
-            <input type="submit" class="btn btn-primary "value="Enviar">
+            <input type="submit" class="btn btn-primary " value="Enviar">
         </form>
-</div>
+    </div>
 {% endblock %}

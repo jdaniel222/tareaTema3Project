@@ -29,11 +29,11 @@ class Usuario(db.Model):
 
     @staticmethod
     def get_by_username(username):
-        return Usuario.query.get(username)
+        return Usuario.query.filter_by(username=username).first()
 
-    def set_password(self, passowrd):
-        method = "pbkdf2:sh256:260000"
-        self.password = generate_password_hash(passowrd, method=method)
+    def set_password(self, password):
+        method = "pbkdf2:sha256:260000"
+        self.password = generate_password_hash(password, method=method)
 
     def check_password(self, password):
         if check_password_hash(self.password, password):

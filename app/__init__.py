@@ -4,7 +4,6 @@ from flask_migrate import Migrate
 
 
 app = Flask(__name__)
-
 app.secret_key = "clave"
 
 #conexion
