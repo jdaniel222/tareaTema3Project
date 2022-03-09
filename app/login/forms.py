@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
-from wtforms.validators import data_required, ValidationError, DataRequired, Length
-
+from wtforms.validators import  ValidationError, DataRequired, Length
+import string
 class FormLogin(FlaskForm):
     username = StringField(label="Nombre de usuario", validators=[
         DataRequired(message="El nombre de usuario es obligatorio"),
@@ -42,8 +42,39 @@ class FormRegistro(FlaskForm):
     def validate_password(form,field):
         if (field.data).isdigit():
             raise ValidationError("La contraseña no pueden ser solo digitos")
+        if (field.data).islower():
+            raise ValidationError("La contraseña no pueden ser solo Minusculas")
         if field.data != form.passwordRepeat.data:
             raise ValidationError("Las contraseñas no coinciden")
+        #Comprobación de contraseña al menos debe tener 8 caracteres
+        lengthPass = 8
+        if len(field.data) < lengthPass:
+            raise ValidationError("La contraseña debe tener al menos 8 caracteres")
+        #Comprobación al menos una Mayuscula
+
+        digit = 0
+        upper = 0
+        lower = 0
+        anySymbol = True
+
+        for char in field.data:
+            if char.isdigit():
+                digit += 1
+            if char.isupper():
+                upper += 1
+            if char.islower():
+                upper += 1
+            for symbol in string.punctuation:
+                if char == symbol:
+                    anySymbol = False
+        if upper < 1:
+            raise ValidationError("La contraseña debe tener al menos 1 Mayuscula")
+        # Comprobación al menos un digito
+        if digit < 1:
+            raise ValidationError("La contraseña debe tener al menos 1 Digito")
+        #Comprobación al menos un caracater especial
+        if anySymbol:
+            raise ValidationError("La contraseña debe tener al menos 1 Caracter especial")
 
     def validate_passwordRepeat(form, field):
         if field.data != form.password.data:

@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, url_for
 from .models import Usuario
 from .forms import FormLogin, FormRegistro
 from . import login
-from app import private
+
 
 @login.route('/registrousuario/', methods=["GET", "POST"])
 def registrousuario():
@@ -15,7 +15,7 @@ def registrousuario():
         usuario.nombre = form.nombre.data
         usuario.apellidos = form.apellidos.data
         usuario.create()
-        return redirect(url_for("private.loginusuario"))
+        return redirect(url_for("login.loginusuario"))
 
     return render_template("registrousuario.html", form=form)
 

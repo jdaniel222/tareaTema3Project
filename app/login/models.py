@@ -31,6 +31,11 @@ class Usuario(db.Model):
     def get_by_username(username):
         return Usuario.query.filter_by(username=username).first()
 
+    def check_username(self, username):
+        if self.username == username:
+            return True
+        else:
+            return False
     def set_password(self, password):
         method = "pbkdf2:sha256:260000"
         self.password = generate_password_hash(password, method=method)
