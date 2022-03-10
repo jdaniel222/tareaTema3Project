@@ -23,7 +23,6 @@ def registrousuario():
             return redirect(url_for("login.loginusuario"))
     return render_template("registrousuario.html", form=form, errorExist=errorExist)
 
-
 @login.route("/loginusuario/", methods=["GET", "POST"])
 def loginusuario():
     error = ""
