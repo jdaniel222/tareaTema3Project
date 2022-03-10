@@ -39,3 +39,5 @@ def loginusuario():
         else:
             error = "Usuario y/o contraseña incorrecta"
     return render_template("loginusuario.html", form=form, error=error)
+
+
