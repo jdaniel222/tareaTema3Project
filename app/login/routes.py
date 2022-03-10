@@ -7,17 +7,21 @@ from . import login
 
 @login.route('/registrousuario/', methods=["GET", "POST"])
 def registrousuario():
+    errorExist = ""
     form = FormRegistro(request.form)
     if form.validate_on_submit():
         usuario = Usuario()
-        usuario.username = form.username.data
         usuario.set_password(form.password.data)
         usuario.nombre = form.nombre.data
         usuario.apellidos = form.apellidos.data
-        usuario.create()
-        return redirect(url_for("login.loginusuario"))
-
-    return render_template("registrousuario.html", form=form)
+        username = usuario.get_by_username(form.username.data)
+        if username:
+            errorExist = "Nombre de usuario no disponible"
+        else:
+            usuario.username = form.username.data
+            usuario.create()
+            return redirect(url_for("login.loginusuario"))
+    return render_template("registrousuario.html", form=form, errorExist=errorExist)
 
 
 @login.route("/loginusuario/", methods=["GET", "POST"])
@@ -34,5 +38,4 @@ def loginusuario():
         #     return redirect(url_for("private.indexcliente"))
         else:
             error = "Usuario y/o contraseña incorrecta"
-
     return render_template("loginusuario.html", form=form, error=error)

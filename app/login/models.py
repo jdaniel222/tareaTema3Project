@@ -11,7 +11,7 @@ class Usuario(db.Model):
     apellidos = db.Column(db.String(50), nullable=False)
 
     def __str__(self):
-        return f"{Usuario.nombre} {Usuario.apellidos}"
+        return f"{self.nombre} {self.apellidos}"
 
     def create(self):
         db.session.add(self)
