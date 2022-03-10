@@ -3832,7 +3832,6 @@ textarea.form-control-lg {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -3947,7 +3946,7 @@ textarea.form-control-lg {
 .navbar > .container-xxl {
   display: flex;
   flex-wrap: inherit;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
 .navbar-brand {
