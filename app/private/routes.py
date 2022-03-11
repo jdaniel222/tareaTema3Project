@@ -1,8 +1,8 @@
 import base64
 
 from flask import render_template, request, redirect, url_for
+from flask_login import current_user
 from werkzeug.datastructures import CombinedMultiDict
-from werkzeug.utils import secure_filename
 from .models import Cliente
 from .forms import FormWTF, FiltroCl
 from . import private
@@ -10,6 +10,8 @@ from . import private
 
 @private.route("/indexcliente/", methods=["GET", "POST"])
 def indexcliente():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login.loginusuario'))
     filtro = FiltroCl(request.form)
     if filtro.validate_on_submit():
         dni = filtro.dni.data
@@ -19,9 +21,10 @@ def indexcliente():
         clientes = Cliente.query.all()
         return render_template("indexcliente.html", filtro=filtro, clientes=clientes)
 
-
 @private.route("/createcliente/", methods=["GET", "POST"])
 def createcliente():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login.loginusuario'))
     form = FormWTF(CombinedMultiDict((request.files, request.form)))
     if form.validate_on_submit():
         # recoger datos de formulario e insertar en la BD

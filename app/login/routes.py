@@ -1,5 +1,7 @@
 from flask import render_template, request, redirect, url_for
+from flask_login import current_user, login_user, logout_user
 
+import app
 from .models import Usuario
 from .forms import FormLogin, FormRegistro
 from . import login
@@ -7,6 +9,8 @@ from . import login
 
 @login.route('/registrousuario/', methods=["GET", "POST"])
 def registrousuario():
+    if current_user.is_authenticated:
+        return redirect(url_for('public.index'))
     errorExist = ""
     form = FormRegistro(request.form)
     if form.validate_on_submit():
@@ -26,17 +30,26 @@ def registrousuario():
 @login.route("/loginusuario/", methods=["GET", "POST"])
 def loginusuario():
     error = ""
+    if current_user.is_authenticated:
+        return redirect(url_for('public.index'))
     form = FormLogin(request.form)
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
         usuario = Usuario.get_by_username(username)
         if usuario and usuario.check_password(password):
+            login_user(usuario, remember=form.recuerdame.data)
             return redirect(url_for("private.indexcliente"))
-        # if usuario and usuario.password == password:
-        #     return redirect(url_for("private.indexcliente"))
         else:
             error = "Usuario y/o contraseña incorrecta"
     return render_template("loginusuario.html", form=form, error=error)
 
+@app.login_manager.user_loader
+def load_user(user_id):
+    return Usuario.get_by_id(user_id)
+
+@login.route("/logoutsession/")
+def logoutsession():
+    logout_user()
+    return redirect(url_for('login.loginusuario'))
 

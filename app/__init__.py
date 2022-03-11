@@ -1,21 +1,21 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-
+from flask_login import LoginManager
 
 app = Flask(__name__)
-app.secret_key = "clave"
-
+app.secret_key = "claveSecreta"
 #conexion
 app.config['SQLALCHEMY_DATABASE_URI'] = \
     'postgresql://postgres:123456@localhost:5432/tareaTema3Project'
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#instaciar un objeto de la clase SQLAlchemy
+#Instanciar un objeto de la clase SQLAlchemy
 db = SQLAlchemy(app)
-#Incanciar un objeto de la clase Migrate
+#Instanciar un objeto de la clase Migrate
 migrate = Migrate(app,db)
-#Importamos modelo
+#Instanciar un objeto de la clase LoginManager
+login_manager = LoginManager(app)
+#Importamos modelos
 from .private.models import Cliente
 from .login.models import Usuario
 

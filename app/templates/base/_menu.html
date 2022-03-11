@@ -1,4 +1,4 @@
-{% macro show_menu() %}
+{% macro show_menu(current_user) %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ url_for('public.index') }}">Tarea Tema 3</a>
@@ -20,12 +20,19 @@
         </li>
         </ul>
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ url_for('login.loginusuario') }}">Iniciar sesión</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{url_for('login.registrousuario')}}">Registrarse</a>
-            </li>
+              {% if current_user.is_anonymous %}
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{ url_for('login.loginusuario') }}">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{url_for('login.registrousuario')}}">Registrarse</a>
+                    </li>
+              {% else %}
+                     <li class="nav-item nav-link">{{ current_user }}</li>
+                     <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{ url_for('login.logoutsession') }}">Cerrar sesión</a>
+                    </li>
+              {% endif %}
           </ul>
     </div>
   </div>

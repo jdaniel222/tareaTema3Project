@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField
-from wtforms.validators import  ValidationError, DataRequired, Length
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import ValidationError, DataRequired, Length
 import string
 class FormLogin(FlaskForm):
     username = StringField(label="Nombre de usuario", validators=[
@@ -11,6 +11,7 @@ class FormLogin(FlaskForm):
         DataRequired(message="La contraseña es obligatoria"),
         Length(min=8, message="La contraseña no puede ser inferior a 8 caracteres")
     ])
+    recuerdame = BooleanField(label="Recuerdame")
 
 class FormRegistro(FlaskForm):
     username = StringField(label="Nombre de usuario", validators=[
