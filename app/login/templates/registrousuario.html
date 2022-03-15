@@ -6,6 +6,7 @@
 <h1>Registro Usuario</h1>
 <div class="row">
         <form action="{{ url_for('login.registrousuario') }}" method="post">
+            {{ form.csrf_token() }}
             {{ generarForm(form) }}
             <input type="submit" class="btn btn-primary "value="Enviar">
         </form>

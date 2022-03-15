@@ -12,12 +12,14 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ url_for('public.index') }}">Home</a>
         </li>
+      {% if not current_user.is_anonymous %}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ url_for('private.indexcliente') }}">Clientes</a>
         </li>
           <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ url_for('private.createcliente') }}">Alta Clientes</a>
         </li>
+      {% endif %}
         </ul>
           <ul class="navbar-nav ms-auto">
               {% if current_user.is_anonymous %}

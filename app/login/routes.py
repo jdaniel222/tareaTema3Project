@@ -38,7 +38,7 @@ def loginusuario():
         password = form.password.data
         usuario = Usuario.get_by_username(username)
         if usuario and usuario.check_password(password):
-            login_user(usuario, remember=form.recuerdame.data)
+            login_user(usuario, form.recuerdame.data)
             return redirect(url_for("private.indexcliente"))
         else:
             error = "Usuario y/o contraseña incorrecta"
@@ -52,4 +52,3 @@ def load_user(user_id):
 def logoutsession():
     logout_user()
     return redirect(url_for('login.loginusuario'))
-
