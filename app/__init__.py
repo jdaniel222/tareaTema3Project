@@ -15,6 +15,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 #Instanciar un objeto de la clase LoginManager
 login_manager = LoginManager(app)
+login_manager.login_view = "login.loginusuario"
 #Importamos modelos
 from .private.models import Cliente
 from .login.models import Usuario
