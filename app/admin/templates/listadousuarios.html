@@ -1,0 +1,32 @@
+{% extends "base/base.html" %}
+{% from 'base/_helpers.html' import generarForm with context %}
+{% block titulo %}Listado Usuarios{% endblock %}
+{% block contenido %}
+
+<h1>Listado Usuarios</h1>
+<div class="row">
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>USERNAME</th>
+            <th>NOMBRE</th>
+            <th>APELLIDOS</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for user in usuario %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.nombre }}</td>
+                <td>{{ user.apellidos }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

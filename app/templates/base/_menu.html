@@ -19,6 +19,14 @@
           <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ url_for('private.createcliente') }}">Alta Clientes</a>
         </li>
+        {% if current_user.is_admin %}
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('admin.adminindex') }}">Adminindex</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('admin.listadousuarios') }}">Listado usuarios</a>
+            </li>
+        {% endif %}
       {% endif %}
         </ul>
           <ul class="navbar-nav ms-auto">
