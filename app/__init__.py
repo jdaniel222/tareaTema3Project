@@ -2,8 +2,15 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from .log.logs import configure_logging
 
 app = Flask(__name__)
+#se le pasa el nombre de nuestra aplicacion
+#para que los mensajes en el log sean registrados
+#con dicho nombre.
+#Objeto logger
+logger = configure_logging(__name__)
+#Clave secreta
 app.secret_key = "claveSecreta"
 #conexion
 app.config['SQLALCHEMY_DATABASE_URI'] = \
