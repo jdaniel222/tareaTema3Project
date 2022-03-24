@@ -54,3 +54,4 @@ def load_user(user_id):
 def logoutsession():
     logout_user()
     return redirect(url_for('login.loginusuario'))
+

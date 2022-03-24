@@ -1,12 +1,12 @@
 import logging
-import app
+
 def configure_logging(name):
     #Establecemos el formato que tendrán los mensajes de log
     logFormatter = logging.Formatter(
         '[%(asctime)s.%(msecs)d]\t %(levelname)s [\t%(name)s.%(funcName)s:%(lineno)d]\t %(message)s')
     #Creamos el logger
     logger = logging.getLogger(name)
-    #Se indica el nivel de errrores que queremos que muestre el log
+    #Se indica el nivel de errores que queremos que muestre el log
     logger.setLevel(logging.INFO)
 
     #Manejador para grabar los mensajes en ficheros
