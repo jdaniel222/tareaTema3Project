@@ -1,4 +1,5 @@
 import logging
+import app
 def configure_logging(name):
     #Establecemos el formato que tendrán los mensajes de log
     logFormatter = logging.Formatter(

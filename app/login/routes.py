@@ -21,6 +21,7 @@ def registrousuario():
         username = usuario.get_by_username(form.username.data)
         if username:
             errorExist = "Nombre de usuario no disponible"
+            app.logger.info(f"Registro usuario: Nombre de usuario {form.username.data} ya existente")
         else:
             usuario.username = form.username.data
             usuario.create()
@@ -41,7 +42,8 @@ def loginusuario():
             login_user(usuario, form.recuerdame.data)
             return redirect(url_for("private.indexcliente"))
         else:
-            error = "Usuario y/o contraseña incorrecta"
+            error = "Usuario y/o contraseña incorrecto"
+            app.logger.exception(f"Login: Intento de acceso usuario: {username}")
     return render_template("loginusuario.html", form=form, error=error)
 
 @app.login_manager.user_loader

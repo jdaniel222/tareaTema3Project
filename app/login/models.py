@@ -2,7 +2,6 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
 
-
 class Usuario(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True, nullable=False)
@@ -37,6 +36,7 @@ class Usuario(db.Model, UserMixin):
             return True
         else:
             return False
+
     def set_password(self, password):
         method = "pbkdf2:sha256:260000"
         self.password = generate_password_hash(password, method=method)
