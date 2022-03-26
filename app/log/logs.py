@@ -10,11 +10,12 @@ def configure_logging(name):
     logger.setLevel(logging.INFO)
 
     #Manejador para grabar los mensajes en ficheros
-    fileHandler = logging.FileHandler("logs.log")
+    pathLog = "/home/ubuntu/PycharmProjects/tareaTema3Project/app/log/"
+    fileHandler = logging.FileHandler(filename=f"{pathLog}log.logs")
     fileHandler.setFormatter(logFormatter)
     logger.addHandler(fileHandler)
-
     #Manejador para mostrar los mensajes por consola
+
     consoleHandler = logging.StreamHandler()
     consoleHandler.setFormatter(logFormatter)
     logger.addHandler(consoleHandler)
