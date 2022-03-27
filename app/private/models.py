@@ -10,4 +10,3 @@ class Cliente(db.Model):
     def crearCliente(self):
         db.session.add(self)
         db.session.commit()
-

@@ -23,6 +23,7 @@ class Usuario(db.Model, UserMixin):
         except:
             raise
 
+
     @staticmethod
     def get_by_id(id):
         return Usuario.query.get(id)
