@@ -4,3 +4,4 @@ Flask-Migrate
 Flask_wtf
 psycopg2-binary
 Flask-Login
+Flask-reCaptcha

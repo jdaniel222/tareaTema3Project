@@ -1,13 +1,17 @@
 from flask import Flask
+from flask_recaptcha import ReCaptcha
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from .log.logs import configure_logging
 
 app = Flask(__name__)
-#se le pasa el nombre de nuestra aplicacion
-#para que los mensajes en el log sean registrados
-#con dicho nombre.
+#Recaptcha
+#app.config['RECAPTCHA_SITE_KEY'] = ''
+#app.config['RECAPTCHA_SECRET_KEY'] = ''
+#recaptcha = ReCaptcha(app)
+
+#se le pasa el nombre de nuestra aplicacion para que los mensajes en el log sean registrados con dicho nombre.
 #Objeto logger
 logger = configure_logging(__name__)
 #Clave secreta

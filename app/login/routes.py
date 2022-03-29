@@ -24,8 +24,9 @@ def registrousuario():
             app.logger.info(f"Registro usuario: Nombre de usuario: {form.username.data} ya existente")
         else:
             usuario.username = form.username.data
-            usuario.create()
-            return redirect(url_for("login.loginusuario"))
+            if app.ReCaptcha.verify():
+                usuario.create()
+                return redirect(url_for("login.loginusuario"))
     return render_template("registrousuario.html", form=form, errorExist=errorExist)
 
 @login.route("/loginusuario/", methods=["GET", "POST"])
@@ -38,6 +39,7 @@ def loginusuario():
         username = form.username.data
         password = form.password.data
         usuario = Usuario.get_by_username(username)
+        #if app.ReCaptcha.verify():
         if usuario and usuario.check_password(password):
             login_user(usuario, form.recuerdame.data)
             return redirect(url_for("private.indexcliente"))

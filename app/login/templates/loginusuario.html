@@ -6,10 +6,11 @@
     <h1>Login usuario</h1>
     <div class="row">
         <form action="{{ url_for('login.loginusuario') }}" method="post">
-            {{ form.csrf_token() }}
             {{ generarForm(form) }}
             <span style="color:red">{{ error }}</span>
             <br/><br/>
+            <p>ReCaptcha</p>
+            {{ recaptcha }}
             <input type="submit" class="btn btn-primary " value="Entrar">
 
         </form>
