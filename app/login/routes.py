@@ -5,7 +5,10 @@ import app
 from .models import Usuario
 from .forms import FormLogin, FormRegistro
 from . import login
+class Prueba():
+    cont = 0
 
+prueba = Prueba()
 
 @login.route('/registrousuario/', methods=["GET", "POST"])
 def registrousuario():
@@ -44,8 +47,9 @@ def loginusuario():
             login_user(usuario, form.recuerdame.data)
             return redirect(url_for("private.indexcliente"))
         else:
+            prueba.cont+=1
             error = "Usuario y/o contraseña incorrecto"
-            app.logger.error(f"Login: Intento de acceso usuario: {username}")
+            app.logger.error(f"Login: Intento de acceso usuario: {username} Intentos: {prueba.cont}")
     return render_template("loginusuario.html", form=form, error=error)
 
 @app.login_manager.user_loader
