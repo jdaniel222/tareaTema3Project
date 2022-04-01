@@ -7,9 +7,9 @@ from .log.logs import configure_logging
 
 app = Flask(__name__)
 #Recaptcha
-#app.config["RECAPTCHA_SITE_KEY"] = "6LduoygfAAAAAEo8e7zL_AaoMVEHYm62isj8SEBq"
-#app.config["RECAPTCHA_SECRET_KEY"] = "6LduoygfAAAAAHSFPAaVo0_rquKx3lo49TgO9ZRd"
-#recaptcha = ReCaptcha(app)
+app.config["RECAPTCHA_SITE_KEY"] = "6LduoygfAAAAAEo8e7zL_AaoMVEHYm62isj8SEBq"
+app.config["RECAPTCHA_SECRET_KEY"] = "6LduoygfAAAAAHSFPAaVo0_rquKx3lo49TgO9ZRd"
+recaptcha = ReCaptcha(app)
 #se le pasa el nombre de nuestra aplicacion para que los mensajes en el log sean registrados con dicho nombre.
 #Objeto logger
 logger = configure_logging(__name__)

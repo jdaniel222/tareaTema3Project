@@ -8,7 +8,7 @@
         <form action="{{ url_for('login.registrousuario') }}" method="post">
             {{ generarForm(form) }}
             <p>ReCaptcha</p>
-
+            {{ recaptcha }}
             <input type="submit" class="btn btn-primary "value="Enviar">
         </form>
         {{ errorExist }}
